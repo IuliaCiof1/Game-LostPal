@@ -245,12 +245,17 @@ namespace Blocks.Mechanics
         //Function takes 2 rects as input and returns the percentage of overlapping
         public int RectOverlap(RectTransform rect1, RectTransform rect2)
         {
+            Canvas.ForceUpdateCanvases();
             Vector3[] r1 = new Vector3[4];
             rect1.GetWorldCorners(r1);
-
+            
             Vector3[] r2 = new Vector3[4];
             rect2.GetWorldCorners(r2);
-        
+            
+            for(int i=0; i<4; i++)
+                Debug.Log(r1[i] + " r2: " + r2[i]);
+            
+            Debug.Log("mouse world position: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
         
             /*
         r1[1]               r1[2]
@@ -273,13 +278,15 @@ namespace Blocks.Mechanics
         
             float A = X * Y; //calculate the intersecting area
 
+            float smallerRectArea = (r1[1].y - r1[0].y) * (r1[3].x - r1[0].x);
             //Return -1 if the rectangles don't overlap
             if (A == 0)
             {
                 return -1;
             }
-        
-            return (int)((Math.Round(A)/(rect1.rect.width * rect1.rect.height))*100);
+
+            Debug.Log("RectOverlap "+A / smallerRectArea * 100);
+            return (int)Math.Round(A / smallerRectArea * 100);
         }
         
         //Check if this block overlaps with any expandable block

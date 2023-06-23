@@ -603,7 +603,7 @@ MonoBehaviour:
   maxNumberOfObstacles: 35
   minNumberOfTrees: 4
   maxNumberOfTrees: 15
-  offset: {x: 0, y: 0.15}
+  offset: {x: 0, y: 0}
   minDistanceTrees: 1
   minDistancePlayerCoin: 2
 --- !u!224 &202335585 stripped
